@@ -1,0 +1,14 @@
+<section class="car-storage" *ngIf="carNewsFromStorage?.length">
+  <div class="car-info car-info--storage" *ngFor="let item of carNewsFromStorage; index as k">
+    <img class="car-info__img" [src]="item?.titleImageUrl" alt="Car Picture">
+    <span *ngIf="item?.publishedDate" class="car-info__date">{{item?.publishedDate | date: 'dd.MM.yyyy'}}</span>
+    <span class="car-info__description">{{item?.description}}</span>
+  </div>
+</section>
+<section class="car">
+  <div class="car-info" *ngFor="let item of carArr; index as k" (click)="goToCurrentCarImage(item)">
+    <img class="car-info__img" [src]="item?.titleImageUrl" alt="Car Picture">
+    <span *ngIf="item?.publishedDate" class="car-info__date">{{item?.publishedDate | date: 'dd.MM.yyyy'}}</span>
+    <span class="car-info__description">{{item?.description}}</span>
+  </div>
+</section>

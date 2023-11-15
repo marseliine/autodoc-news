@@ -1,0 +1,26 @@
+<header class="header">
+  <div class="header-container">
+    <img src="./assets/Logo.svg" alt="Logo icon" height="60" width="60">
+    <p class="header__text">ПОРТАЛ НОВОСТЕЙ</p>
+    <img class="header__open" src="./assets/Добавить%20новость.svg" alt="Logo icon" height="60" width="60"
+    (click)="openModalMethod()">
+  </div>
+</header>
+<main class="main" *ngIf="!currentCarInfo">
+  <div class="main-container">
+    <p class="main-container__title">Автомобильные новости</p>
+    <section class="main-container__cars">
+      <autospot-news-page [carArr]="news"
+                          [carNewsFromStorage]="newsFromStorage"
+                          (infoForCurrentCar) = showInfoForCar($event)
+      ></autospot-news-page>
+    </section>
+  </div>
+</main>
+<section class="current-info" *ngIf="currentCarInfo">
+  <p class="current-info__header">{{currentCarInfo?.title}}</p>
+  <span class=current-info__date>{{currentCarInfo?.publishedDate }}</span>
+  <img [src]="currentCarInfo?.titleImageUrl" class="current-info__img">
+  <div class="current-info__about" [innerHTML]="currentCarInfo?.carNewsInfo"></div>
+</section>
+<autospot-add-news-modal *ngIf="openModal" (close)="handleModalClose()"></autospot-add-news-modal>

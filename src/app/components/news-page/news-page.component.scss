@@ -1,0 +1,78 @@
+@import "../../../styles";
+.car {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1.5rem;
+  &-storage {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-bottom: 3rem;
+    grid-gap: 1.5rem;
+  }
+  &-info {
+    display: flex;
+    flex-direction: column;
+    width: 29rem;
+    &__img {
+      height: 23.7rem;
+      border-radius: 32px;
+      margin-bottom: 0.75rem;
+      object-fit: cover;
+    }
+    &__date {
+      background-color: $black-05;
+      border-radius: 25px;
+      @include text-info(20px, 400, 130%);
+      color: $black-80;
+      margin-bottom: 0.75rem;
+      text-align: center;
+      max-width: 8.375rem;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+    &__description {
+      color: $black-100;
+      @include text-info(24px, 500, 130%);
+    }
+    &--storage {
+      width: 44.25rem;
+    }
+  }
+}
+
+@media (max-width: 1525px) {
+  .car {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1.5rem;
+    &-info {
+      &--storage {
+        width: 29rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 980px) {
+  .car {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    &-storage {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+}
+
+@media (max-width: 575px) {
+  .car {
+    &-info,
+    &--storage {
+      max-width: 21.4375rem;
+      &__img {
+        height: 21.4375rem;
+      }
+    }
+  }
+}
+

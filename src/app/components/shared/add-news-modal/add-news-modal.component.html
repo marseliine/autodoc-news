@@ -1,0 +1,35 @@
+<div class="modal">
+  <div class="modal-container">
+    <h2 class="modal__text"
+        [ngClass]="!isUpdate ? 'modal__text' : 'modal__text modal__text--update'"
+    >{{modalTitle}}</h2>
+    <ng-container *ngIf="!isUpdate; else updateOK ">
+      <form [formGroup]="newsForm">
+        <input  class="modal__input" type="text" id="title" formControlName="title" placeholder="Заголовок">
+        <textarea class="modal__input modal__input--text" id="text" formControlName="description" placeholder="Текст">
+        </textarea>
+        <label for="image" class="modal__file">
+          {{loadTitle}}
+          <input type="file" id="image" (change)="handleImageUpload($event)">
+        </label>
+        <div *ngIf="!!imageUrl" class="modal__load">
+          <img class="modal__load-img" [src]="imageUrl" alt="Загруженное изображение">
+          <img class="modal__load-btn" src="assets/Delete.svg" alt="Delete"
+               (click)="deleteLoadImage()">
+        </div>
+        <button [disabled]="!isEnableToAddInfo"
+                [ngClass]="{'modal__publish-enable': isEnableToAddInfo}"
+                class="modal__publish" (click)="publishNews()">Опубликовать новость</button>
+      </form>
+    </ng-container>
+    <img class="modal__btn" src="assets/Vector.svg" alt="Vector" (click)="closeModal()">
+  </div>
+</div>
+
+<ng-template #updateOK>
+  <div *ngIf="!!imageUrl" class="modal__load modal__load--successful">
+    <img class="modal__load-img" [src]="imageUrl" alt="Загруженное изображение">
+    <p class="modal__info">{{newsForm.value.description}}</p>
+  </div>
+  <button class="modal__publish modal__publish-enable" (click)="closeModal()">Окей</button>
+</ng-template>
